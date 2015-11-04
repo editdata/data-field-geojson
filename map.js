@@ -1,5 +1,3 @@
-var h = require('virtual-dom/h')
-var extend = require('xtend')
 var L = require('leaflet')
 require('leaflet-draw')
 
@@ -35,6 +33,10 @@ function MapWidget (state, options) {
   this.options = options
 }
 
+MapWidget.prototype.refresh = function () {
+  this.map.invalidateSize()
+}
+
 MapWidget.prototype.init = function () {
   var self = this
   var el = document.createElement('div')
@@ -57,12 +59,12 @@ MapWidget.prototype.init = function () {
 
     this.map.on('draw:created', function (e) {
       self.features.addData(e.layer.toGeoJSON())
-      if (self.options.ondraw) self.options.ondraw(e)
+      if (self.options.ondraw) self.options.ondraw(e, self.features.toGeoJSON())
       if (self.options.onupdate) self.options.onupdate(e, self.features.toGeoJSON())
     })
 
     this.map.on('draw:edited', function (e) {
-      if (self.options.onedit) self.options.onedit(e)
+      if (self.options.onedit) self.options.onedit(e, self.features.toGeoJSON())
       if (self.options.onupdate) self.options.onupdate(e, self.features.toGeoJSON())
     })
   }

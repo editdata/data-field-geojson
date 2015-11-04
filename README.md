@@ -9,26 +9,41 @@ Create a virtual-dom geojson data-field for use with [data-ui](https://github.co
 
 **Parameters**
 
+-   `options` **Object** an options object, including any properties you can pass to leaflet & virtual-dom/h
+    -   `options.accessToken` **String** mapbox access token for using their API
+
+    -   `options.tileLayer` **Object** Leaflet tilelayer, default is osm tiles
+
+    -   `options.imagePath` **String** path to leaflet images
+
+    -   `options.display` **Boolean** true for display mode, default is false for input mode
+
+
+
+**Examples**
+
+```javascript
+var createGeoJSONField = require('data-field-geojson')
+var field = createGeoJSONField(options)
+field.render(h, {}, geojsonObject)
+```
+
+
+
+
+### field.render
+
+Render the virtual-dom geojson data-field.
+
+
+**Parameters**
+
 -   `h` **function** virtual-dom `h` function
 
 -   `properties` **Object** an options object, including any properties you can pass to leaflet & virtual-dom/h
-    -   `properties.accessToken` **String** mapbox access token for using their API
-
-    -   `properties.tileLayer` **Object** Leaflet tilelayer, default is osm tiles
-
-    -   `properties.imagePath` **String** path to leaflet images
-
     -   `properties.display` **Boolean** true for display mode, default is false for input mode
 
-    -   `properties.onupdate` **Function** function called any time the geojson is updated
-
-    -   `properties.onedit` **Function** function called in input mode when a feature is edited
-
-    -   `properties.ondraw` **Function** function called in input mode when a feature is drawn
-
     -   `properties.value` **Object** a geojson Feature or Featurecollection
-
-    -   `properties.onclick` **Function** function called in display mode when a feature is clicked
 
 -   `value` **Object** a geojson Feature or Featurecollection
 
@@ -38,11 +53,35 @@ Create a virtual-dom geojson data-field for use with [data-ui](https://github.co
 
 ```javascript
 var createGeoJSONField = require('data-field-geojson')
-
-createGeoJSONField(h, { onclick: function (e){} }, geojsonObject)
+var field = createGeoJSONField(options)
+field.render(h, properties, geojsonObject)
 ```
 
+## Installation
 
+```sh
+npm install data-field-geojson --save
+```
+
+Or install the [data-fields](https://github.com/editdata/data-fields) module:
+```sh
+npm install data-fields --save
+```
+
+Right now this module relies on leaflet v1.0.0-beta2, and you must build the dependency manually:
+
+```
+cd node_modules/leaflet
+npm install
+npm run build
+```
+
+## Tests
+
+```sh
+npm install
+npm test
+```
 
 
 ## See also

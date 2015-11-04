@@ -1,28 +1,42 @@
 var vraf = require('virtual-raf')
 var h = require('virtual-dom/h')
-var field = require('../index')
+var createField = require('../index')
 
-function render (state) {
-  var elements = []
-
-  elements.push(field(h, {
+function inputField (state) {
+  var field = createField({
     display: true,
     zoom: 12,
     value: state.geojson,
     center: [47.621958, -122.33636]
-  }))
+  })
 
-  elements.push(field(h, {
+  return field.render(h, {
+    value: state.geojson
+  })
+}
+
+function displayField (state) {
+  var field = createField({
     zoom: 12,
-    value: state.geojson,
-    center: [47.621958, -122.33636],
-    onupdate: function (e, geojson) {
-      state.geojson = geojson
-      tree.update(state)
-    }
-  }))
+    center: [47.621958, -122.33636]
+  })
 
-  return h('div.fields', elements)
+  field.on('update', function (e, geojson) {
+    console.log('update?', e, geojson)
+    state.geojson = geojson
+    tree.update(state)
+  })
+
+  return field.render(h, {
+    value: state.geojson
+  })
+}
+
+function render (state) {
+  return h('div.fields', [
+    inputField(state),
+    displayField(state)
+  ])
 }
 
 var initialState = {

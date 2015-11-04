@@ -6,7 +6,9 @@
 <link href="https://cdnjs.cloudflare.com/ajax/libs/leaflet.draw/0.2.3/leaflet.draw.css" rel="stylesheet">
 <link href="https://api.mapbox.com/mapbox.js/v2.2.2/mapbox.css" rel="stylesheet" />
 <style>
-html, body, .data-field-geojson-map-container {
+html, body, .data-field-geojson-map-container, .widget {
+  margin: 0px;
+  padding: 0px;
   height: 100%;
   width: 100%;
 }
@@ -23,6 +25,11 @@ html, body, .data-field-geojson-map-container {
 .data-field-display {
   width: 50%;
   float: right;
+}
+
+#data-field-location {
+  width: 400px;
+  height: 400px;
 }
 </style>
 </head>

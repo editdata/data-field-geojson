@@ -1,11 +1,12 @@
 {
   "name": "data-field-geojson",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "author": "sethvincent",
   "bugs": {
     "url": "https://github.com/editdata/data-field-geojson/issues"
   },
   "dependencies": {
+    "component-emitter": "^1.2.0",
     "data-field-classname": "^1.0.0",
     "leaflet": "github:leaflet/leaflet",
     "leaflet-draw": "github:leaflet/leaflet.draw#leaflet-master",
@@ -13,6 +14,8 @@
   },
   "devDependencies": {
     "budo": "^5.1.5",
+    "data-editor": "github:editdata/data-editor",
+    "data-form": "github:editdata/data-form",
     "documentation-readme": "^2.0.0",
     "standard": "^5.3.1",
     "tap-spec": "^4.1.0",
@@ -39,6 +42,7 @@
     "docs": "documentation-readme README.md -s \"API\" -- index.js",
     "example-basic": "budo -d examples examples/basic.js:bundle.js --live",
     "example-widget": "budo -d examples examples/widget.js:bundle.js --live",
+    "example-form": "budo -d examples examples/form.js:bundle.js --live",
     "test": "standard && tape tests/*.js | tap-spec"
   },
   "style": "style.css"
